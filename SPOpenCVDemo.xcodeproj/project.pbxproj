@@ -146,10 +146,7 @@
 				1C70FE2921475CB8006E63B5 /* UIImage+OpenCV.mm */,
 				1C70FDF1214644BE006E63B5 /* ViewController.h */,
 				1C70FDF2214644BE006E63B5 /* ViewController.mm */,
-				1C70FE2B21476412006E63B5 /* SPImageViewController.h */,
-				1C70FE2C21476412006E63B5 /* SPImageViewController.m */,
-				1C70FE4221479809006E63B5 /* SPCameraViewController.h */,
-				1C70FE4321479809006E63B5 /* SPCameraViewController.mm */,
+				1C70FE452147B22D006E63B5 /* New Group */,
 				1C70FDF4214644BE006E63B5 /* Main.storyboard */,
 				1C70FDF7214644D0006E63B5 /* Assets.xcassets */,
 				1C70FDF9214644D0006E63B5 /* LaunchScreen.storyboard */,
@@ -191,6 +188,17 @@
 				1C70FE2621475A7D006E63B5 /* AssetsLibrary.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1C70FE452147B22D006E63B5 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				1C70FE2B21476412006E63B5 /* SPImageViewController.h */,
+				1C70FE2C21476412006E63B5 /* SPImageViewController.m */,
+				1C70FE4221479809006E63B5 /* SPCameraViewController.h */,
+				1C70FE4321479809006E63B5 /* SPCameraViewController.mm */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
