@@ -27,6 +27,19 @@
 		1C70FE3F214773FA006E63B5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C70FE3E214773FA006E63B5 /* QuartzCore.framework */; };
 		1C70FE4121477404006E63B5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C70FE4021477404006E63B5 /* Accelerate.framework */; };
 		1C70FE4421479809006E63B5 /* SPCameraViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1C70FE4321479809006E63B5 /* SPCameraViewController.mm */; };
+		7AB5AD0D21B574B40034A005 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD0821B574B40034A005 /* UIImage+fixOrientation.m */; };
+		7AB5AD0E21B574B40034A005 /* UIImageView+ContentFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD0A21B574B40034A005 /* UIImageView+ContentFrame.m */; };
+		7AB5AD0F21B574B40034A005 /* UIColor+HexRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD0C21B574B40034A005 /* UIColor+HexRepresentation.m */; };
+		7AB5AD1421B574CD0034A005 /* MTGeometry.c in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD1021B574CD0034A005 /* MTGeometry.c */; };
+		7AB5AD1521B574CD0034A005 /* MMOpenCVHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD1221B574CD0034A005 /* MMOpenCVHelper.mm */; };
+		7AB5AD1821B574D60034A005 /* MMCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD1721B574D60034A005 /* MMCropView.m */; };
+		7AB5AD1B21B574E00034A005 /* CropViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD1A21B574DF0034A005 /* CropViewController.mm */; };
+		7AB5AD1E21B574E70034A005 /* CameraFocusSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD1D21B574E70034A005 /* CameraFocusSquare.m */; };
+		7AB5AD2421B576260034A005 /* ViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD2321B576260034A005 /* ViewController1.m */; };
+		7AB5AD2721B576480034A005 /* RippleAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD2621B576470034A005 /* RippleAnimation.m */; };
+		7AB5AD2A21B576640034A005 /* MMCameraPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD2921B576640034A005 /* MMCameraPickerController.m */; };
+		7AB5AD2F21B576810034A005 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AB5AD2D21B576810034A005 /* ProgressHUD.bundle */; };
+		7AB5AD3021B576810034A005 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB5AD2E21B576810034A005 /* ProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +92,31 @@
 		1C70FE4021477404006E63B5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		1C70FE4221479809006E63B5 /* SPCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPCameraViewController.h; sourceTree = "<group>"; };
 		1C70FE4321479809006E63B5 /* SPCameraViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SPCameraViewController.mm; sourceTree = "<group>"; };
+		7AB5AD0721B574B40034A005 /* UIColor+HexRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexRepresentation.h"; sourceTree = "<group>"; };
+		7AB5AD0821B574B40034A005 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
+		7AB5AD0921B574B40034A005 /* UIImageView+ContentFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ContentFrame.h"; sourceTree = "<group>"; };
+		7AB5AD0A21B574B40034A005 /* UIImageView+ContentFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ContentFrame.m"; sourceTree = "<group>"; };
+		7AB5AD0B21B574B40034A005 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
+		7AB5AD0C21B574B40034A005 /* UIColor+HexRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexRepresentation.m"; sourceTree = "<group>"; };
+		7AB5AD1021B574CD0034A005 /* MTGeometry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MTGeometry.c; sourceTree = "<group>"; };
+		7AB5AD1121B574CD0034A005 /* MMOpenCVHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMOpenCVHelper.h; sourceTree = "<group>"; };
+		7AB5AD1221B574CD0034A005 /* MMOpenCVHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MMOpenCVHelper.mm; sourceTree = "<group>"; };
+		7AB5AD1321B574CD0034A005 /* MTGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTGeometry.h; sourceTree = "<group>"; };
+		7AB5AD1621B574D50034A005 /* MMCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCropView.h; sourceTree = "<group>"; };
+		7AB5AD1721B574D60034A005 /* MMCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCropView.m; sourceTree = "<group>"; };
+		7AB5AD1921B574DF0034A005 /* CropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CropViewController.h; sourceTree = "<group>"; };
+		7AB5AD1A21B574DF0034A005 /* CropViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CropViewController.mm; sourceTree = "<group>"; };
+		7AB5AD1C21B574E70034A005 /* CameraFocusSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraFocusSquare.h; sourceTree = "<group>"; };
+		7AB5AD1D21B574E70034A005 /* CameraFocusSquare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraFocusSquare.m; sourceTree = "<group>"; };
+		7AB5AD2221B576260034A005 /* ViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController1.h; sourceTree = "<group>"; };
+		7AB5AD2321B576260034A005 /* ViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController1.m; sourceTree = "<group>"; };
+		7AB5AD2521B576470034A005 /* RippleAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RippleAnimation.h; sourceTree = "<group>"; };
+		7AB5AD2621B576470034A005 /* RippleAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RippleAnimation.m; sourceTree = "<group>"; };
+		7AB5AD2821B576640034A005 /* MMCameraPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCameraPickerController.h; sourceTree = "<group>"; };
+		7AB5AD2921B576640034A005 /* MMCameraPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCameraPickerController.m; sourceTree = "<group>"; };
+		7AB5AD2C21B576810034A005 /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		7AB5AD2D21B576810034A005 /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
+		7AB5AD2E21B576810034A005 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,9 +182,23 @@
 				1C70FDEF214644BE006E63B5 /* AppDelegate.m */,
 				1C70FE2821475CB8006E63B5 /* UIImage+OpenCV.h */,
 				1C70FE2921475CB8006E63B5 /* UIImage+OpenCV.mm */,
+				7AB5AD2B21B576810034A005 /* ProgressHUD */,
 				1C70FDF1214644BE006E63B5 /* ViewController.h */,
 				1C70FDF2214644BE006E63B5 /* ViewController.mm */,
-				1C70FE452147B22D006E63B5 /* New Group */,
+				7AB5AD1621B574D50034A005 /* MMCropView.h */,
+				7AB5AD2221B576260034A005 /* ViewController1.h */,
+				7AB5AD2321B576260034A005 /* ViewController1.m */,
+				7AB5AD2821B576640034A005 /* MMCameraPickerController.h */,
+				7AB5AD2921B576640034A005 /* MMCameraPickerController.m */,
+				7AB5AD2521B576470034A005 /* RippleAnimation.h */,
+				7AB5AD2621B576470034A005 /* RippleAnimation.m */,
+				7AB5AD1721B574D60034A005 /* MMCropView.m */,
+				7AB5AD1921B574DF0034A005 /* CropViewController.h */,
+				7AB5AD1A21B574DF0034A005 /* CropViewController.mm */,
+				7AB5AD1C21B574E70034A005 /* CameraFocusSquare.h */,
+				7AB5AD1D21B574E70034A005 /* CameraFocusSquare.m */,
+				7AB5AD0621B574870034A005 /* Categray */,
+				1C70FE452147B22D006E63B5 /* VC */,
 				1C70FDF4214644BE006E63B5 /* Main.storyboard */,
 				1C70FDF7214644D0006E63B5 /* Assets.xcassets */,
 				1C70FDF9214644D0006E63B5 /* LaunchScreen.storyboard */,
@@ -190,7 +242,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1C70FE452147B22D006E63B5 /* New Group */ = {
+		1C70FE452147B22D006E63B5 /* VC */ = {
 			isa = PBXGroup;
 			children = (
 				1C70FE2B21476412006E63B5 /* SPImageViewController.h */,
@@ -198,7 +250,34 @@
 				1C70FE4221479809006E63B5 /* SPCameraViewController.h */,
 				1C70FE4321479809006E63B5 /* SPCameraViewController.mm */,
 			);
-			path = "New Group";
+			path = VC;
+			sourceTree = "<group>";
+		};
+		7AB5AD0621B574870034A005 /* Categray */ = {
+			isa = PBXGroup;
+			children = (
+				7AB5AD0721B574B40034A005 /* UIColor+HexRepresentation.h */,
+				7AB5AD0C21B574B40034A005 /* UIColor+HexRepresentation.m */,
+				7AB5AD0B21B574B40034A005 /* UIImage+fixOrientation.h */,
+				7AB5AD0821B574B40034A005 /* UIImage+fixOrientation.m */,
+				7AB5AD0921B574B40034A005 /* UIImageView+ContentFrame.h */,
+				7AB5AD0A21B574B40034A005 /* UIImageView+ContentFrame.m */,
+				7AB5AD1121B574CD0034A005 /* MMOpenCVHelper.h */,
+				7AB5AD1221B574CD0034A005 /* MMOpenCVHelper.mm */,
+				7AB5AD1021B574CD0034A005 /* MTGeometry.c */,
+				7AB5AD1321B574CD0034A005 /* MTGeometry.h */,
+			);
+			path = Categray;
+			sourceTree = "<group>";
+		};
+		7AB5AD2B21B576810034A005 /* ProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				7AB5AD2C21B576810034A005 /* ProgressHUD.h */,
+				7AB5AD2D21B576810034A005 /* ProgressHUD.bundle */,
+				7AB5AD2E21B576810034A005 /* ProgressHUD.m */,
+			);
+			path = ProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +383,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AB5AD2F21B576810034A005 /* ProgressHUD.bundle in Resources */,
 				1C70FDFB214644D0006E63B5 /* LaunchScreen.storyboard in Resources */,
 				1C70FDF8214644D0006E63B5 /* Assets.xcassets in Resources */,
 				1C70FDF6214644BE006E63B5 /* Main.storyboard in Resources */,
@@ -331,9 +411,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AB5AD3021B576810034A005 /* ProgressHUD.m in Sources */,
 				1C70FE2D21476412006E63B5 /* SPImageViewController.m in Sources */,
+				7AB5AD0D21B574B40034A005 /* UIImage+fixOrientation.m in Sources */,
+				7AB5AD0E21B574B40034A005 /* UIImageView+ContentFrame.m in Sources */,
 				1C70FDF3214644BE006E63B5 /* ViewController.mm in Sources */,
+				7AB5AD1421B574CD0034A005 /* MTGeometry.c in Sources */,
+				7AB5AD2421B576260034A005 /* ViewController1.m in Sources */,
+				7AB5AD1521B574CD0034A005 /* MMOpenCVHelper.mm in Sources */,
 				1C70FE4421479809006E63B5 /* SPCameraViewController.mm in Sources */,
+				7AB5AD2A21B576640034A005 /* MMCameraPickerController.m in Sources */,
+				7AB5AD2721B576480034A005 /* RippleAnimation.m in Sources */,
+				7AB5AD0F21B574B40034A005 /* UIColor+HexRepresentation.m in Sources */,
+				7AB5AD1E21B574E70034A005 /* CameraFocusSquare.m in Sources */,
+				7AB5AD1B21B574E00034A005 /* CropViewController.mm in Sources */,
+				7AB5AD1821B574D60034A005 /* MMCropView.m in Sources */,
 				1C70FDFE214644D0006E63B5 /* main.m in Sources */,
 				1C70FE2A21475CB8006E63B5 /* UIImage+OpenCV.mm in Sources */,
 				1C70FDF0214644BE006E63B5 /* AppDelegate.m in Sources */,

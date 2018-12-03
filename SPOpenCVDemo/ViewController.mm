@@ -25,9 +25,9 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.dataSource = @[@"DisplayNormalImage",
-                        @"DisplayGrayImage",
-                        @"DisplayCamera"];
+    self.dataSource = @[@"DisplayImage",
+                        @"DisplayCamera",
+                        @"TransformCell"];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -35,14 +35,19 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row<2) {
+    if (!indexPath.row) {
         
         UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"cellID" forIndexPath:indexPath];
         cell.textLabel.text = self.dataSource[indexPath.row];
         return cell;
-    }else {
+    }else if (indexPath.row ==1){
         
         UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"CameraCell" forIndexPath:indexPath];
+        cell.textLabel.text = self.dataSource[indexPath.row];
+        return cell;
+    }else {
+        
+        UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:@"TransformCell" forIndexPath:indexPath];
         cell.textLabel.text = self.dataSource[indexPath.row];
         return cell;
     }

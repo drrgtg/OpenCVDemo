@@ -21,4 +21,5 @@ using namespace cv;
 // Mat Object transform to UIImage
 + (UIImage *)UIImageFromCVMat:(cv::Mat)cvMat ;
 
+//+ (UIImage *)UIImage
 @end
