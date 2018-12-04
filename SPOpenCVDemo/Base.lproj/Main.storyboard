@@ -438,22 +438,6 @@
                                     <action selector="cameraAction:" destination="G1L-JV-HCr" eventType="touchUpInside" id="hKV-FN-3ik"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gSg-vJ-91f">
-                                <rect key="frame" x="62.5" y="79" width="250" height="473"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="00Z-Li-8zG"/>
-                                </constraints>
-                                <string key="text" base64-UTF8="YES">
-VGhpcyBDb250cm9sIENvbnNpc3QgT2YgQ3VzdG9tIENhbWVyYSwKRG9jdW1lbnQgU2Nhbm5lciBXaXRo
-IENyb3AgRmVhdHVyZS4KSXQgQWxzbyBDb250YWluIEN1c3RvbSBSaXBwbGUgVmlldyBDb250cm9sbGVy
-IEFuaW1hdGlvbi4KU3F1YXJlIERldGVjdGlvbi4gChBDcm9wIEZlYXR1cmUgaXMgQWRkZWQgV2l0aCBI
-ZWxwIE9mIE9wZW5DViBGcmFtZXdvcmsuA
-</string>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HAM-Am-xkk">
                                 <rect key="frame" x="299" y="607" width="40" height="40"/>
                                 <constraints>
@@ -470,13 +454,10 @@ ZWxwIE9mIE9wZW5DViBGcmFtZXdvcmsuA
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gSg-vJ-91f" firstAttribute="top" secondItem="HLc-9M-Zxy" secondAttribute="bottom" constant="15" id="02L-Vr-xuU"/>
-                            <constraint firstItem="C2m-tT-1f2" firstAttribute="top" secondItem="gSg-vJ-91f" secondAttribute="bottom" constant="20" id="774-Bl-0hM"/>
                             <constraint firstAttribute="trailing" secondItem="HAM-Am-xkk" secondAttribute="trailing" constant="36" id="F8H-pd-yre"/>
                             <constraint firstItem="Mhz-Wu-17Q" firstAttribute="top" secondItem="HAM-Am-xkk" secondAttribute="bottom" constant="20" id="IaR-Ld-442"/>
                             <constraint firstItem="Mhz-Wu-17Q" firstAttribute="top" secondItem="C2m-tT-1f2" secondAttribute="bottom" constant="20" id="MdF-N7-nUH"/>
                             <constraint firstAttribute="centerX" secondItem="C2m-tT-1f2" secondAttribute="centerX" id="Wzn-R4-lfm"/>
-                            <constraint firstAttribute="centerX" secondItem="gSg-vJ-91f" secondAttribute="centerX" id="vtz-SK-jkO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pTA-aJ-sgB"/>
                     </view>

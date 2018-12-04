@@ -436,8 +436,8 @@
 }
 - (void)delayMethod{
     
-    
-       [self.camdelegate didFinishCaptureImage:_capturedImageV.image withMMCam:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.camdelegate didFinishCaptureImage:_capturedImageV.image withMMCam:self];
 }
 - (IBAction)retakeAction:(id)sender {
     
@@ -465,7 +465,8 @@
 //   
 //    [self saveImage:_capturedImageV.image];
     
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
+
     NSLog(@"你=========================================点击了done");
     [self.camdelegate didFinishCaptureImage:_capturedImageV.image withMMCam:self];
     
@@ -572,6 +573,7 @@
 
 - (IBAction)backToParent:(id)sender {
     
+    [self dismissViewControllerAnimated:YES completion:nil];
     [self.camdelegate didFinishCaptureImage:nil withMMCam:self];
    
 }

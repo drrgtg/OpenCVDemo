@@ -14,11 +14,7 @@
 #import "UIImage+fixOrientation.h"
 #import <CoreTelephony/CoreTelephonyDefines.h>
 @interface ViewController1 ()<MMCameraDelegate,MMCropDelegate>
-{
-    RippleAnimation *ripple;
-    
-}
-
+@property (strong, nonatomic) RippleAnimation *ripple;
 
 @end
 
@@ -28,38 +24,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self setUI];
-      self.view.backgroundColor=[UIColor colorWithHexString:@"f44336"];
-//    [self uploadReceiptImage:@"Camera.png"];
-//    [UploadManager shared];
-    NSArray *imgArr=@[@"sample.jpg",@"Camera.png",@"Crop.png",@"Done.png",@"Gallery.png"];
-    for (int i=0; i<imgArr.count; i++) {
-//        [self uploadReceiptImage:[imgArr objectAtIndex:i]];
-        NSLog(@"%d URL Hit",i);
-    }
-    
-//    NSLog(@"%lu",(unsigned long)UIImagePNGRepresentation([self loadImage]).length);
+    self.view.backgroundColor=[UIColor colorWithHexString:@"f44336"];
    
 }
 
 #pragma mark Document Directory
-
-- (UIImage*)loadImage
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString* path = [documentsDirectory stringByAppendingPathComponent:
-                      @"test.png" ];
-    UIImage* image = [UIImage imageWithContentsOfFile:path];
-    return image;
-}
--(NSURL *)applicationDocumentsDirectory{
-    NSArray *paths = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
-    return [paths lastObject];
-}
-
-
-
 -(void)setUI{
     self.cameraBut.tintColor=[UIColor whiteColor];
     self.cameraBut.backgroundColor=[UIColor colorWithHexString:backgroundHex];
@@ -75,35 +44,23 @@
     [self.pickerBut setImage:[UIImage renderImage:@"Gallery"] forState:UIControlStateNormal];
 }
 
-
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
 - (IBAction)cameraAction:(id)sender {
     MMCameraPickerController *cameraPicker=[self.storyboard instantiateViewControllerWithIdentifier:@"camera"];
-    ripple=[[RippleAnimation alloc] init];
+    self.ripple=[[RippleAnimation alloc] init];
     cameraPicker.camdelegate=self;
-    cameraPicker.transitioningDelegate=ripple;
-    ripple.touchPoint=self.cameraBut.frame;
+    cameraPicker.transitioningDelegate=self.ripple;
+    self.ripple.touchPoint=self.cameraBut.frame;
    
     [self presentViewController:cameraPicker animated:YES completion:nil];
-    
-    
-
 }
 
 - (IBAction)pickerAction:(id)sender {
     _invokeCamera = [[UIImagePickerController alloc] init];
     _invokeCamera.delegate = self;
    
-    ripple=[[RippleAnimation alloc] init];
-    ripple.touchPoint=self.pickerBut.frame;
-    _invokeCamera.transitioningDelegate=ripple;
+    self.ripple=[[RippleAnimation alloc] init];
+    self.ripple.touchPoint=self.pickerBut.frame;
+    _invokeCamera.transitioningDelegate=self.ripple;
     _invokeCamera.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     _invokeCamera.allowsEditing = NO;
     
@@ -119,20 +76,20 @@
 {
     [_invokeCamera dismissViewControllerAnimated:YES completion:nil];
     [_invokeCamera removeFromParentViewController];
-    ripple=nil;
+    self.ripple=nil;
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
      [_invokeCamera dismissViewControllerAnimated:YES completion:nil];
     [_invokeCamera removeFromParentViewController];
-    ripple=nil;
+    self.ripple=nil;
     
     CropViewController *crop=[self.storyboard instantiateViewControllerWithIdentifier:@"crop"];
     crop.cropdelegate=self;
-    ripple=[[RippleAnimation alloc] init];
-    crop.transitioningDelegate=ripple;
-    ripple.touchPoint=self.cameraBut.frame;
+    self.ripple=[[RippleAnimation alloc] init];
+    crop.transitioningDelegate=self.ripple;
+    self.ripple.touchPoint=self.cameraBut.frame;
 
     crop.adjustedImage=[info objectForKey:UIImagePickerControllerOriginalImage];
     
@@ -146,25 +103,20 @@
 #pragma mark Camera Delegate
 -(void)didFinishCaptureImage:(UIImage *)capturedImage withMMCam:(MMCameraPickerController*)cropcam{
     
-    [cropcam closeWithCompletion:^{
-        NSLog(@"dismissed");
-        ripple=nil;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.ripple=nil;
         if(capturedImage!=nil){
             CropViewController *crop=[self.storyboard instantiateViewControllerWithIdentifier:@"crop"];
             crop.cropdelegate=self;
-            ripple=[[RippleAnimation alloc] init];
-            crop.transitioningDelegate=ripple;
-            ripple.touchPoint=self.cameraBut.frame;
+            self.ripple=[[RippleAnimation alloc] init];
+            crop.transitioningDelegate=self.ripple;
+            self.ripple.touchPoint=self.cameraBut.frame;
             crop.adjustedImage=capturedImage;
             
             [self presentViewController:crop animated:YES completion:nil];
         }
-    }];
-    
-    
-}
--(void)authorizationStatus:(BOOL)status{
-    
+    });
+
 }
 
 #pragma mark crop delegate
@@ -172,7 +124,7 @@
     
 
     [cropObj closeWithCompletion:^{
-        ripple=nil;
+        self.ripple=nil;
     }];
 //    [self uploadData:finalCropImage];
     NSLog(@"Size of Image %lu",(unsigned long)UIImageJPEGRepresentation(finalCropImage, 0.5).length);

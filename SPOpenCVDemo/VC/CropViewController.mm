@@ -145,10 +145,6 @@
 -(void)setCropUI{
     //Done
     self.dismissBut.tintColor=[UIColor whiteColor];
-//    self.dismissBut.backgroundColor=[UIColor colorWithHexString:backgroundHex];
-//    self.dismissBut.layer.cornerRadius = self.dismissBut.frame.size.width / 2;
-//    self.dismissBut.clipsToBounds=YES;
-    
     [self.dismissBut setImage:[UIImage renderImage:@"Cancel"] forState:UIControlStateNormal];
     [self.leftRotateBut setImage:[UIImage renderImage:@"Left"] forState:UIControlStateNormal];
     [self.rightRotateBut setImage:[UIImage renderImage:@"Right"] forState:UIControlStateNormal];
@@ -157,27 +153,11 @@
     self.cropBut.tintColor=[UIColor whiteColor];
     self.leftRotateBut.tintColor=[UIColor whiteColor];
     self.rightRotateBut.tintColor=[UIColor whiteColor];
-//    self.cropBut.backgroundColor=[UIColor colorWithHexString:backgroundHex];
-//    self.cropBut.layer.cornerRadius = self.cropBut.frame.size.width / 2;
-//    self.cropBut.clipsToBounds=YES;
-    
     [self.cropBut setImage:[UIImage renderImage:@"Crop"] forState:UIControlStateNormal];
     
    
 
 }
-
-
-//- (void)adjustPossition
-//{
-//    CGAffineTransform saveState = _sourceImageView.transform;
-//    
-//    _sourceImageView.transform = CGAffineTransformIdentity;
-//    
-//    [_sourceImageView setFrameToFitImage];
-//    
-//    _sourceImageView.transform = saveState;
-//}
 
 -(void)singlePan:(UIPanGestureRecognizer *)gesture{
     CGPoint posInStretch = [gesture locationInView:_cropRect];
@@ -201,12 +181,11 @@
     CGSize targetSize = _sourceImageView.contentSize;
     cv::resize(original, original, cvSize(targetSize.width, targetSize.height));
     
-    
-    
     std::vector<std::vector<cv::Point>>squares;
     std::vector<cv::Point> largest_square;
-    
+    // 找出所有的四边形 opencv算法
     find_squares(original, squares);
+    // 找出最大的
     find_largest_square(squares, largest_square);
     
     if (largest_square.size() == 4)
@@ -217,14 +196,14 @@
         NSMutableArray *points = [NSMutableArray array];
         NSMutableDictionary *sortedPoints = [NSMutableDictionary dictionary];
         
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < largest_square.size(); i++)
         {
             NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSValue valueWithCGPoint:CGPointMake(largest_square[i].x, largest_square[i].y)], @"point" , [NSNumber numberWithInt:(largest_square[i].x + largest_square[i].y)], @"value", nil];
             [points addObject:dict];
         }
         
-        int min = [[points valueForKeyPath:@"@min.value"] intValue];
-        int max = [[points valueForKeyPath:@"@max.value"] intValue];
+        int min = [[points valueForKeyPath:@"@min.value"] intValue];// 最小值
+        int max = [[points valueForKeyPath:@"@max.value"] intValue];// 最大值
         
         int minIndex = 0;
         int maxIndex = 0;
@@ -232,7 +211,7 @@
         int missingIndexOne = 0;
         int missingIndexTwo = 0;
         
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < largest_square.size(); i++)
         {
             NSDictionary *dict = [points objectAtIndex:i];
             
@@ -254,18 +233,14 @@
             
             missingIndexOne = i;
         }
-        
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < largest_square.size(); i++)
         {
             if (missingIndexOne != i && minIndex != i && maxIndex != i)
             {
                 missingIndexTwo = i;
             }
         }
-        
-        
-        if (largest_square[missingIndexOne].x < largest_square[missingIndexTwo].x)
-        {
+        if (largest_square[missingIndexOne].x < largest_square[missingIndexTwo].x) {
             //2nd Point Found
             [sortedPoints setObject:[[points objectAtIndex:missingIndexOne] objectForKey:@"point"] forKey:@"3"];
             [sortedPoints setObject:[[points objectAtIndex:missingIndexTwo] objectForKey:@"point"] forKey:@"1"];
@@ -276,28 +251,20 @@
             [sortedPoints setObject:[[points objectAtIndex:missingIndexOne] objectForKey:@"point"] forKey:@"1"];
             [sortedPoints setObject:[[points objectAtIndex:missingIndexTwo] objectForKey:@"point"] forKey:@"3"];
         }
-        
+        // 设置四边形顶点
         [_cropRect topLeftCornerToCGPoint:[(NSValue *)[sortedPoints objectForKey:@"0"] CGPointValue]];
         [_cropRect topRightCornerToCGPoint:[(NSValue *)[sortedPoints objectForKey:@"1"] CGPointValue]];
         [_cropRect bottomRightCornerToCGPoint:[(NSValue *)[sortedPoints objectForKey:@"2"] CGPointValue]];
         [_cropRect bottomLeftCornerToCGPoint:[(NSValue *)[sortedPoints objectForKey:@"3"] CGPointValue]];
-
         NSLog(@"%@ Sorted Points",sortedPoints);
-       
-        
-
     }
     else{
  
     }
-    
     original.release();
-    
-    
-   
 }
 
-
+// CV 算法，找出所有的四边形。
 // http://stackoverflow.com/questions/8667818/opencv-c-obj-c-detecting-a-sheet-of-paper-square-detection
 void find_squares(cv::Mat& image, std::vector<std::vector<cv::Point>>&squares) {
     
@@ -368,7 +335,7 @@ void find_squares(cv::Mat& image, std::vector<std::vector<cv::Point>>&squares) {
         }
     }
 }
-
+// 计算，并不涉及到CV算法
 void find_largest_square(const std::vector<std::vector<cv::Point> >& squares, std::vector<cv::Point>& biggest_square)
 {
     if (!squares.size())
@@ -381,7 +348,7 @@ void find_largest_square(const std::vector<std::vector<cv::Point> >& squares, st
     int max_height = 0;
     int max_square_idx = 0;
     
-    for (size_t i = 0; i < squares.size(); i++)
+    for (int i = 0; i < squares.size(); i++)
     {
         // Convert a set of 4 unordered Points into a meaningful cv::Rect structure.
         cv::Rect rectangle = boundingRect(cv::Mat(squares[i]));
@@ -482,6 +449,7 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
     cv::Mat original = [MMOpenCVHelper cvMatFromUIImage:_adjustedImage];
         
     NSLog(@"%f %f %f %f",ptBottomLeft.x,ptBottomRight.x,ptTopRight.x,ptTopLeft.x);
+        // 图像矫正算法，透视变换生成目标图像。
     cv::warpPerspective(original, undistorted, cv::getPerspectiveTransform(src, dst), cvSize(maxWidth, maxHeight));
 
     [UIView transitionWithView:_sourceImageView duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
@@ -564,43 +532,11 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
 }
 
 - (IBAction)dismissAction:(id)sender {
-//   [self.cropdelegate didFinishCropping:[UIImage imageWithData:UIImageJPEGRepresentation(_sourceImageView.image, 0.0)] from:self];
        [self.cropdelegate didFinishCropping:_sourceImageView.image from:self];
-
-//    NSLog(@"%d",UIImagePNGRepresentation(_sourceImageView.image).length);
-//    NSLog(@"Size of Image %d",UIImageJPEGRepresentation(_sourceImageView.image, 0.5).length);
 }
 
 - (IBAction)rightRotateAction:(id)sender {
     
-    
-//    CIImage *imgToRotate = [CIImage imageWithCGImage:_sourceImageView.image.CGImage];
-//    
-//    CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI_2);
-//    
-//    CIImage *rotatedImage = [imgToRotate imageByApplyingTransform:transform];
-//    
-//    CGRect extent = [rotatedImage extent];
-//    
-//    CIContext *context = [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
-//    
-//    CGImageRef cgImage = [context createCGImage:rotatedImage fromRect:extent];
-//    
-//    _adjustedImage = [UIImage imageWithCGImage:cgImage];
-//    
-//    
-//    [UIView transitionWithView:_sourceImageView duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-//        _sourceImageView.image = _adjustedImage;
-//    } completion:^(BOOL finished) {
-//        
-//    }];
-//    
-//    
-//    CGRect cropFrame=CGRectMake(_sourceImageView.contentFrame.origin.x,_sourceImageView.contentFrame.origin.y+64,_sourceImageView.contentFrame.size.width,_sourceImageView.contentFrame.size.height);
-//    _cropRect.frame=cropFrame;
-//    
-//    [self detectEdges];
-//    CGImageRelease(cgImage);
     
     CGFloat value = (int)floorf((_rotateSlider + 1)*2) + 1;
     
@@ -614,35 +550,7 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
 }
 
 - (IBAction)leftRotateAction:(id)sender {
-    
-//    CIImage *imgToRotate = [CIImage imageWithCGImage:_sourceImageView.image.CGImage];
-//    
-//    CGAffineTransform transform = CGAffineTransformMakeRotation(-M_PI_2);
-//    
-//    CIImage *rotatedImage = [imgToRotate imageByApplyingTransform:transform];
-//    
-//    CGRect extent = [rotatedImage extent];
-//    
-//    CIContext *context =  [CIContext contextWithOptions:@{kCIContextUseSoftwareRenderer : @(NO)}];
-//    
-//    CGImageRef cgImage = [context createCGImage:rotatedImage fromRect:extent];
-//    
-//    _adjustedImage = [UIImage imageWithCGImage:cgImage];
-//    
-//    [UIView transitionWithView:_sourceImageView duration:0.2 options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
-//        _sourceImageView.image = _adjustedImage;
-//    } completion:^(BOOL finished) {
-//       
-//    }];
-//    
-//    CGRect cropFrame=CGRectMake(_sourceImageView.contentFrame.origin.x,_sourceImageView.contentFrame.origin.y+64,_sourceImageView.contentFrame.size.width,_sourceImageView.contentFrame.size.height);
-//    _cropRect.frame=cropFrame;
-//    
-//    
-//    [self detectEdges];
-//    CGImageRelease(cgImage);
-//
-    
+
     CGFloat value = (int)floorf((_rotateSlider + 1)*2) - 1;
     
     if(value>4){ value -= 4; }
@@ -661,13 +569,7 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
     
     
     [self dismissViewControllerAnimated:YES completion:^{
-        
         completion();
-        _sourceImageView=nil;
-        _adjustedImage=nil;
-        _cropRect=nil;
-        [self removeFromParentViewController];
-        
     }];
 }
 
@@ -702,7 +604,6 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
     _sourceImageView.layer.transform = transform;
     _cropRect.layer.transform = transform;
    
-//    NSLog(@"%@",_sourceImageView);
 }
 
 
